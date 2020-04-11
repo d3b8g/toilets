@@ -40,7 +40,7 @@ class HomePanelBase extends React.Component {
         const {id, setPage, withoutEpic} = this.props;
 
         var days_counter = Math.round( (184*this.state.rolls) / (3*Number.parseInt(this.state.visits.toString().split(',')[1]));
-        var days =  days_counter + " - " + Math.round( (184*this.state.rolls) / (3*Number.parseInt(this.state.visits.toString().split(',')[0].replace(',','')))) ;
+        var days = Math.round( (184*this.state.rolls) / (3*Number.parseInt(this.state.visits.toString().split(',')[0].replace(',','')))) + " - " + days_counter;
         var keyword = "дней";
 
         if(days_counter >= 20 ){
