@@ -11,8 +11,8 @@ class HomePanelBase extends React.Component {
       super(props);
 
     this.state = {
-      rolls: 0,
-      visits: 0
+      rolls: 1,
+      visits: [3,5]
     };
   }
 
@@ -39,11 +39,25 @@ class HomePanelBase extends React.Component {
     render() {
         const {id, setPage, withoutEpic} = this.props;
 
+        var days = Math.round( (184*this.state.rolls) / (3*Number.parseInt(this.state.visits.toString().split(',')[1])));
+        var keyword = "дней";
+
+        if(days.length>2 ){
+          switch (days.slice(-1)) {
+            case 1:
+              keyword = "день";
+              console.log(keyword);
+              break;
+            default:
+
+          }
+        }
+
         return (
             <Panel id={id}>
                 <PanelHeader>Калькулятор туалетной бумаги</PanelHeader>
                 <Group>
-                  <Header>Вам останется на 1 день</Header>
+                  <Header>Вам останется на {days} {keyword} </Header>
                 </Group>
                 <Group>
                   <FormLayout>
