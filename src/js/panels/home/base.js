@@ -42,14 +42,36 @@ class HomePanelBase extends React.Component {
         var days = Math.round( (184*this.state.rolls) / (3*Number.parseInt(this.state.visits.toString().split(',')[1])));
         var keyword = "дней";
 
-        if(days.length>2 ){
-          switch (days.slice(-1)) {
-            case 1:
+        if(days >= 20 ){
+          switch (days.toString().slice(-1)) {
+            case '0':
+              keyword = "дней";
+              break;
+            case '1':
               keyword = "день";
-              console.log(keyword);
+              break;
+            case '2','3','4':
+              keyword = "дня";
               break;
             default:
-
+              keyword = "дней";
+              break;
+          }
+        }
+        else {
+          switch (days) {
+            case 0:
+              keyword = "дней";
+              break;
+            case 1:
+              keyword = "день";
+              break;
+            case 2,3,4:
+              keyword = "дня";
+              break;
+            default:
+              keyword = "дней";
+              break;
           }
         }
 
