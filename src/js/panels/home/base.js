@@ -1,16 +1,20 @@
-
 import React from 'react';
 import {connect} from 'react-redux';
 
 import {closePopout, goBack, openModal, openPopout, setPage} from '../../store/router/actions';
 
-import {Div, Panel, Alert, Group, Button, PanelHeader} from "@vkontakte/vkui"
+import {Div, Panel, Alert, Group, Button, PanelHeader, FormLayout, Slider, RangeSlider, Cell} from "@vkontakte/vkui"
 
 class HomePanelBase extends React.Component {
 
-    state = {
+  constructor(props) {
+      super(props);
 
+    this.state = {
+      rolls: 0,
+      visits: 0
     };
+  }
 
     openPopout() {
         this.props.openPopout(
@@ -39,7 +43,27 @@ class HomePanelBase extends React.Component {
             <Panel id={id}>
                 <PanelHeader>Калькулятор туалетной бумаги</PanelHeader>
                 <Group>
-
+                  <Cell></Cell>
+                </Group>
+                <Group>
+                  <FormLayout>
+                    <Slider
+                      step={1}
+                      min={0}
+                      max={120}
+                      value={Number(this.state.rolls)}
+                      onChange={rolls => this.setState({rolls})}
+                      top={"Количество рулонов туалетной бумаги: " + this.state.rolls}
+                    />
+                      <RangeSlider
+                        top={"Посещений в туалет: " + this.state.visits.replace(',','-')}
+                        min={1}
+                        max={60}
+                        step={1}
+                        onChange={visits => this.setState({visits})}
+                        defaultValue={[3, 5]}
+                      />
+                  </FormLayout>
                 </Group>
             </Panel>
         );
