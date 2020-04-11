@@ -1,3 +1,5 @@
+//ПРИВЕТ ПАША
+
 import React from 'react';
 import {connect} from 'react-redux';
 
@@ -38,7 +40,7 @@ class HomePanelBase extends React.Component {
             <Panel id={id}>
                 <PanelHeader>Калькулятор туалетной бумаги</PanelHeader>
                 <Group>
-                    
+
                 </Group>
             </Panel>
         );
