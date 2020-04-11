@@ -42,6 +42,7 @@ class HomePanelBase extends React.Component {
         var days = Math.round( (184*this.state.rolls) / (3*Number.parseInt(this.state.visits.toString().split(',')[1])));
         var keyword = "дней";
 
+<<<<<<< HEAD
         if(days.length>2 ){
           switch (days.slice(-1)) {
             case 1:
@@ -49,6 +50,38 @@ class HomePanelBase extends React.Component {
               break;
             default:
 
+=======
+        if(days >= 20 ){
+          switch (days.toString().slice(-1)) {
+            case '0':
+              keyword = "дней";
+              break;
+            case '1':
+              keyword = "день";
+              break;
+            case '2','3','4':
+              keyword = "дня";
+              break;
+            default:
+              keyword = "дней";
+              break;
+          }
+        }
+        else {
+          switch (days) {
+            case 0:
+              keyword = "дней";
+              break;
+            case 1:
+              keyword = "день";
+              break;
+            case 2,3,4:
+              keyword = "дня";
+              break;
+            default:
+              keyword = "дней";
+              break;
+>>>>>>> 5314565d7e93336e8f17db88564c1686d3091971
           }
         }
 
@@ -56,7 +89,11 @@ class HomePanelBase extends React.Component {
             <Panel id={id}>
                 <PanelHeader>Калькулятор туалетной бумаги</PanelHeader>
                 <Group>
+<<<<<<< HEAD
                   <Header>Вам останется на {days } {keyword} </Header>
+=======
+                  <Header>Вам останется на {days} {keyword} </Header>
+>>>>>>> 5314565d7e93336e8f17db88564c1686d3091971
                 </Group>
                 <Group>
                   <FormLayout>
