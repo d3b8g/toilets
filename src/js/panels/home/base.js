@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {closePopout, goBack, openModal, openPopout, setPage} from '../../store/router/actions';
 
-import {Div, Panel, Alert, Group, Button, PanelHeader, FormLayout, Slider, RangeSlider, Cell} from "@vkontakte/vkui"
+import {Div, Panel, Alert, Group, Button, PanelHeader, FormLayout, Slider, RangeSlider, Cell, Header} from "@vkontakte/vkui"
 
 class HomePanelBase extends React.Component {
 
@@ -43,7 +43,7 @@ class HomePanelBase extends React.Component {
             <Panel id={id}>
                 <PanelHeader>Калькулятор туалетной бумаги</PanelHeader>
                 <Group>
-                  <Cell></Cell>
+                  <Header>Вам останется на 1 день</Header>
                 </Group>
                 <Group>
                   <FormLayout>
@@ -56,7 +56,7 @@ class HomePanelBase extends React.Component {
                       top={"Количество рулонов туалетной бумаги: " + this.state.rolls}
                     />
                       <RangeSlider
-                        top={"Посещений в туалет: " + this.state.visits.replace(',','-')}
+                        top={"Посещений в туалет: от " + this.state.visits.toString().replace(',',' до ')}
                         min={1}
                         max={60}
                         step={1}
