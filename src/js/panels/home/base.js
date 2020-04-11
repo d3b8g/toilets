@@ -39,11 +39,12 @@ class HomePanelBase extends React.Component {
     render() {
         const {id, setPage, withoutEpic} = this.props;
 
-        var days = Math.round( (184*this.state.rolls) / (3*Number.parseInt(this.state.visits.toString().split(',')[1])));
+        var days_counter = Math.round( (184*this.state.rolls) / (3*Number.parseInt(this.state.visits.toString().split(',')[1]));
+        var days = Math.round( (184*this.state.rolls) / (3*Number.parseInt(this.state.visits.toString().split(',')[0].replace(',','')))) + " - " + days_counter;
         var keyword = "дней";
 
-        if(days >= 20 ){
-          switch (days.toString().slice(-1)) {
+        if(days_counter >= 20 ){
+          switch (days_counter.toString().slice(-1)) {
             case '0':
               keyword = "дней";
               break;
