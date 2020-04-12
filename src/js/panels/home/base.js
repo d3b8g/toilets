@@ -16,7 +16,7 @@ class HomePanelBase extends React.Component {
       rolls: 1,
       visits: [2,4],
       metersVisit: 3,
-      metersInRoll  : 20,
+      metersInRoll: 20,
       visibleSettings: false
     };
 
