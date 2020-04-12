@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {closePopout, goBack, openModal, openPopout, setPage} from '../../store/router/actions';
 
-import {Div, Panel, Alert, Group, Button, PanelHeader, FormLayout, Slider, RangeSlider, Cell, Header} from "@vkontakte/vkui"
+import {Div, Panel, Alert, Group, Button, PanelHeader, FormLayout, Slider, RangeSlider, Cell, Header, Footer} from "@vkontakte/vkui"
 
 import {metersInRoll, metersVisit} from '../../components/modals/HomeBotsListModal';
 
@@ -117,6 +117,7 @@ class HomePanelBase extends React.Component {
                   <Group>
                     <Div><Button onClick={() => setPage('home','washHands')} size="xl" mode="secondary">Правила гигиены</Button></Div>
                   </Group>
+                  <Footer>Версия 1.0</Footer>
             </Panel>
 
         );
