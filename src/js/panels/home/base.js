@@ -117,6 +117,7 @@ class HomePanelBase extends React.Component {
                   <Group>
                     <Div><Button onClick={() => setPage('home','washHands')} size="xl" mode="secondary">Правила гигиены</Button></Div>
                   </Group>
+                  <Footer>Версия 1.0</Footer>
             </Panel>
 
         );
