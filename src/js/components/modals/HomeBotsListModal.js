@@ -21,7 +21,6 @@ class HomeBotsListModal extends React.Component {
 
     saveSettings() {
         const {closeModal, test} = this.props;
-        test();
         closeModal();
     }
 

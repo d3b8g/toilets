@@ -27,17 +27,24 @@ class HomePanelBase extends React.Component {
     this.setState({ changed: true });
   }
 
+  updateData(meters,mRolls){
+    this.setState({meters:metersVisit,mRolls:metersInRoll});
+  }
+
+
     render() {
         const {id, setPage, withoutEpic} = this.props;
 
-        console.log("+++");
+        var days_finish = Math.round( (this.state.mRolls*this.state.rolls ) / (this.state.meters*this.state.visits.toString().split(',')[0].replace(',','')));
+        var days_start = Math.round((this.state.mRolls*this.state.rolls ) / (this.state.meters*this.state.visits.toString().split(',')[1]));
+        var days = days_start + " - " + days_finish ;
 
-        var days_counter = Math.round( (this.state.mRolls*this.state.rolls ) / (this.state.meters*this.state.visits.toString().split(',')[0].replace(',','')));
-        var days = Math.round((this.state.mRolls*this.state.rolls ) / (this.state.meters*this.state.visits.toString().split(',')[1])) + " - " + days_counter ;
         var keyword = "дней";
 
-        if(days_counter >= 20 ){
-          switch (days_counter.toString().slice(-1)) {
+        var keyHeader = "Вам останется на: " + days + " " + keyword;
+
+        if(days_finish >= 20 ){
+          switch (days_finish.toString().slice(-1)) {
             case '0':
               keyword = "дней";
               break;
@@ -69,11 +76,13 @@ class HomePanelBase extends React.Component {
           }
         }
 
+        if(days_start==0) keyHeader = "Вам нужно отправиться в магазин!";
+
         return (
             <Panel id={id}>
                 <PanelHeader>Калькулятор туалетной бумаги</PanelHeader>
                 <Group>
-                  <Header>Вам останется на {days} {keyword} </Header>
+                  <Header>{keyHeader}</Header>
                 </Group>
                 <Group>
                   <FormLayout>
@@ -101,6 +110,7 @@ class HomePanelBase extends React.Component {
                   </Div>
                 </Group>
             </Panel>
+
         );
     }
 
