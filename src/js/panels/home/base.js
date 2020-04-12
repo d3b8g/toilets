@@ -17,9 +17,16 @@ class HomePanelBase extends React.Component {
       visits: [2,4],
       metersVisit: 3,
       metersInRoll  : 20,
-      visibleSettings: false
-    };
+      visibleSettings: false,
+      ovfl:"hidden"
+    }
 
+  }
+
+  changeOverflow(){
+    this.setState({ovfl: this.state.ovfl ? "overlay" : "hidden" })
+    this.setState({visibleSettings:!this.state.visibleSettings})
+    console.log(this.state.visibleSettings + " bb" + this.state.ovfl);
   }
 
     render() {
@@ -94,7 +101,7 @@ class HomePanelBase extends React.Component {
                       />
                   </FormLayout>
                 </Group>
-                {!this.state.visibleSettings ? <Div><Button onClick={() => this.setState({visibleSettings: true})} size="xl" mode="secondary">Расширенные настройки</Button></Div> : <Div><Button onClick={() => this.setState({visibleSettings: false})} size="xl" mode="secondary">Расширенные настройки</Button></Div>}
+                {!this.state.visibleSettings ? <Div><Button onClick={() => this.changeOverflow()} size="xl" mode="secondary">Расширенные настройки</Button></Div> : <Div><Button onClick={() => this.changeOverflow()} size="xl" mode="secondary">Расширенные настройки</Button></Div>}
                 {this.state.visibleSettings &&
                   <FormLayout>
                     <Slider
