@@ -64,7 +64,7 @@ class App extends React.Component {
         const homeModals = (
             <ModalRoot activeModal={activeModal}>
                 <HomeBotsListModal
-                    id="MODAL_PAGE_BOTS_LIST"
+                    id="ADVANCED_SETTINGS_PAGE"
                     onClose={() => closeModal()}
                 />
                 <HomeBotInfoModal

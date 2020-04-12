@@ -24,6 +24,12 @@ class App extends React.Component {
         super(props);
 
         this.lastAndroidBackAction = 0;
+
+        this.test = this.test.bind(this);
+    }
+
+    test() {
+      console.log("+");
     }
 
     componentDidMount() {
@@ -68,7 +74,7 @@ class App extends React.Component {
         const homeModals = (
             <ModalRoot activeModal={activeModal}>
                 <HomeBotsListModal
-                    id="MODAL_PAGE_BOTS_LIST"
+                    id="ADVANCED_SETTINGS_PAGE"
                     onClose={() => closeModal()}
                 />
                 <HomeBotInfoModal

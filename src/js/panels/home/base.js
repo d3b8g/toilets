@@ -5,6 +5,8 @@ import {closePopout, goBack, openModal, openPopout, setPage} from '../../store/r
 
 import {Div, Panel, Alert, Group, Button, PanelHeader, FormLayout, Slider, RangeSlider, Cell, Header} from "@vkontakte/vkui"
 
+import {metersInRoll, metersVisit} from '../../components/modals/HomeBotsListModal';
+
 class HomePanelBase extends React.Component {
 
   constructor(props) {
@@ -13,35 +15,25 @@ class HomePanelBase extends React.Component {
     this.state = {
       rolls: 1,
       visits: [2,4],
-      meters: 3
+      meters: 3,
+      mRolls: 20,
+      changed: false
     };
+    this.setChanged = this.setChanged.bind(this);
+
   }
 
-    openPopout() {
-        this.props.openPopout(
-            <Alert
-                actions={[{
-                    title: 'Нет',
-                    autoclose: true,
-                    style: 'cancel',
-                }, {
-                    title: 'Да',
-                    autoclose: true,
-                    action: this.showImg
-                }]}
-                onClose={() => this.props.closePopout()}
-            >
-                <h2>Вопрос значит</h2>
-                <p>Вас роняли в детстве?</p>
-            </Alert>
-        );
-    }
+  setChanged() {
+    this.setState({ changed: true });
+  }
 
     render() {
         const {id, setPage, withoutEpic} = this.props;
 
-        var days_counter = Math.round( (184*this.state.rolls ) / (this.state.meters*this.state.visits.toString().split(',')[0].replace(',','')));
-        var days =Math.round((184*this.state.rolls ) / (this.state.meters*this.state.visits.toString().split(',')[1])) + " - " + days_counter ;
+        console.log("+++");
+
+        var days_counter = Math.round( (this.state.mRolls*this.state.rolls ) / (this.state.meters*this.state.visits.toString().split(',')[0].replace(',','')));
+        var days = Math.round((this.state.mRolls*this.state.rolls ) / (this.state.meters*this.state.visits.toString().split(',')[1])) + " - " + days_counter ;
         var keyword = "дней";
 
         if(days_counter >= 20 ){
@@ -94,7 +86,7 @@ class HomePanelBase extends React.Component {
                       top={"Количество рулонов туалетной бумаги: " + this.state.rolls}
                     />
                       <RangeSlider
-                        top={"Посещений в туалет: от " + this.state.visits.toString().replace(',',' до ')}
+                        top={"Посещений туалета: от " + this.state.visits.toString().replace(',',' до ')}
                         min={1}
                         max={60}
                         step={1}
@@ -102,6 +94,11 @@ class HomePanelBase extends React.Component {
                         defaultValue={[3, 5]}
                       />
                   </FormLayout>
+                </Group>
+                <Group>
+                  <Div>
+                    <Button mode="secondary" size="xl" stretched onClick={() => this.props.openModal("ADVANCED_SETTINGS_PAGE")}>Расширенные настройки</Button>
+                  </Div>
                 </Group>
             </Panel>
         );
