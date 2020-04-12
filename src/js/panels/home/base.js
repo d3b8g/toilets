@@ -15,28 +15,18 @@ class HomePanelBase extends React.Component {
     this.state = {
       rolls: 1,
       visits: [2,4],
-      meters: 3,
-      mRolls: 20,
-      changed: false
+      metersVisit: 3,
+      metersInRoll  : 20,
+      visibleSettings: false
     };
-    this.setChanged = this.setChanged.bind(this);
 
   }
-
-  setChanged() {
-    this.setState({ changed: true });
-  }
-
-  updateData(meters,mRolls){
-    this.setState({meters:metersVisit,mRolls:metersInRoll});
-  }
-
 
     render() {
         const {id, setPage, withoutEpic} = this.props;
 
-        var days_finish = Math.round( (this.state.mRolls*this.state.rolls ) / (this.state.meters*this.state.visits.toString().split(',')[0].replace(',','')));
-        var days_start = Math.round((this.state.mRolls*this.state.rolls ) / (this.state.meters*this.state.visits.toString().split(',')[1]));
+        var days_finish = Math.round( (this.state.metersInRoll*this.state.rolls ) / (this.state.metersVisit*this.state.visits.toString().split(',')[0].replace(',','')));
+        var days_start = Math.round((this.state.metersInRoll*this.state.rolls ) / (this.state.metersVisit*this.state.visits.toString().split(',')[1]));
         var days = days_start + " - " + days_finish ;
 
         var keyword = "дней";
@@ -104,11 +94,29 @@ class HomePanelBase extends React.Component {
                       />
                   </FormLayout>
                 </Group>
-                <Group>
-                  <Div>
-                    <Button mode="secondary" size="xl" stretched onClick={() => this.props.openModal("ADVANCED_SETTINGS_PAGE")}>Расширенные настройки</Button>
-                  </Div>
-                </Group>
+                {!this.state.visibleSettings ? <Div><Button onClick={() => this.setState({visibleSettings: true})} size="xl" mode="secondary">Расширенные настройки</Button></Div> : <Div><Button onClick={() => this.setState({visibleSettings: false})} size="xl" mode="secondary">Расширенные настройки</Button></Div>}
+                {this.state.visibleSettings &&
+                  <FormLayout>
+                    <Slider
+                      step={1}
+                      min={1}
+                      max={70}
+                      value={Number(this.state.metersInRoll)}
+                      onChange={metersInRoll => this.setState({metersInRoll})}
+                      top={"Метров в рулоне: " + this.state.metersInRoll}
+                    />
+                    <Slider
+                      step={1}
+                      min={1}
+                      max={10}
+                      value={Number(this.state.metersVisit)}
+                      onChange={metersVisit => this.setState({metersVisit})}
+                      top={"Метров используется(за поход): " + this.state.metersVisit}
+                    />
+                  </FormLayout>}
+                  <Group>
+                    <Div><Button onClick={() => setPage('home','washHands')} size="xl" mode="secondary">Правила гигиены</Button></Div>
+                  </Group>
             </Panel>
 
         );

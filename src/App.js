@@ -11,6 +11,7 @@ import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed';
 import Icon28More from '@vkontakte/icons/dist/28/more';
 
 import HomePanelBase from './js/panels/home/base';
+import WashHandsPanelBase from './js/panels/home/washHands';
 import HomePanelGroups from './js/panels/home/groups';
 
 import MorePanelBase from './js/panels/more/base';
@@ -93,6 +94,7 @@ class App extends React.Component {
                         >
                             <HomePanelBase id="base" withoutEpic={false}/>
                             <HomePanelGroups id="groups"/>
+                            <WashHandsPanelBase id="washHands"/>
                         </View>
                     </Root>
                     <Root id="more" activeView={activeView} popout={popout}>
